@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,17 @@ public class CustomerService {
 			repo.save(cust);
 			return new ResponseEntity<String>("Customer registered successfully", HttpStatus.OK);	
 		}
+		
+	}
+	public ResponseEntity<String> deleteCustomer(String mobNo) {
+		
+		Customer customer = repo.findByMobileNumber(mobNo);
+		if(customer!=null) {
+		repo.delete(customer);
+		return new ResponseEntity<String>("Customer deleted successfully", HttpStatus.OK);
+		}
+		else
+			return new ResponseEntity<String>("Invalid MobNo", HttpStatus.NO_CONTENT);
 		
 	}
 
