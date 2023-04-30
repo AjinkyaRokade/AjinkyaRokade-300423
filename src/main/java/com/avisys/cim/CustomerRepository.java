@@ -14,9 +14,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	List<Customer> findByFirstNameContainingIgnoreCase(String name);
 
-	List<Customer> findByMobileNumber(String mobNo);
+	Customer findByMobileNumber(String mobNo);
 
 	List<Customer> findByLastNameContainingIgnoreCase(String name);
+
+	
 
 	
 }

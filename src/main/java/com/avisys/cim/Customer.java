@@ -1,5 +1,7 @@
 package com.avisys.cim;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
+
+	public Customer() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -55,5 +61,10 @@ public class Customer {
 	public void setMobileNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNumber="
+				+ mobileNumber + "]";
+	}
 }

@@ -28,9 +28,22 @@ public class CustomerService {
 		return repo.findByLastNameContainingIgnoreCase(name);
 	}
 
-	public List<Customer> getAllCustByMobNo(String mobNo) {
+	public Customer getAllCustByMobNo(String mobNo) {
 		
 		return repo.findByMobileNumber(mobNo);
+	}
+	public ResponseEntity<String> registerCustomer(Customer cust) {
+		
+	Customer customer = repo.findByMobileNumber(cust.getMobileNumber());
+		if(customer!=null) {
+			return new ResponseEntity<String>("Cannot register, MobNo already present", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		else
+		{
+			repo.save(cust);
+			return new ResponseEntity<String>("Customer registered successfully", HttpStatus.OK);	
+		}
+		
 	}
 
 }
